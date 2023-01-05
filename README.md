@@ -47,9 +47,9 @@ Then, go to ``http://127.0.0.1:9000/upgrade.php``.
 
 ## Contributing
 
-Since this website does not have an open account system, feel free to contribute your patch files or git repositories via email: denisebitca at 42l.fr.
+If you are on GitHub, feel free to drop a pull request. You can also use the issue tracker.
 
-Once I get the time, I'll open a pull request crediting you - and I'll send you an email with the pull request so you can keep updated on what's going on.
+If you are not on GitHub, feel free to drop a pull request too. Eventually, pull requests will be automatically sent to GitHub.
 
 ## License
 
