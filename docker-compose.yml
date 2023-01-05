@@ -1,7 +1,13 @@
 services:
-  chyrp_web:
+  php:
+    image: php:fpm-bullseye
+    volumes_from:
+      - data
+    networks:
+      - backend
+    command: ["bash", "-c", "docker-php-ext-install pdo pdo_mysql; php-fpm"]
+  web:
     build: .
-    container_name: chyrp_lite_web
     restart: unless-stopped
     dns:
       - 8.8.8.8
@@ -9,9 +15,15 @@ services:
     networks:
       - default
       - backend
+    volumes_from:
+      - data
     ports:
-      - "9050:80"
-  chyrp_db:
+      - "9000:80"
+    depends_on:
+      - data
+      - php
+      - db
+  db:
     image: mariadb:latest
     restart: unless-stopped
     networks:
@@ -19,7 +31,12 @@ services:
     env_file:
       - ./.env
     volumes:
-      - /srv/miaoute_data/chyrp_db:/var/lib/mysql
+      - ./db:/var/lib/mysql
+  data:
+    image: busybox
+    volumes:
+      - ./chyrp:/var/www/html
+
 networks:
   backend:
     internal: true

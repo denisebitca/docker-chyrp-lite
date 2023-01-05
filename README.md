@@ -2,11 +2,7 @@
 
 [Chyrp Lite](https://github.com/xenocrat/chyrp-lite) is a MIT licensed blogging software written in PHP.
 
-This repository, made for the Miaoute server structure, can be slightly modified to work elsewhere.
-
-Replace all mentions of mounting on directory /srv with your own structure inside docker-compose.yaml.
-
-Chyrp Lite is exposed by default to port 9050 on the host. You can visit it on ``localhost:9050``.
+Chyrp Lite is exposed by default to port 9000 on the host. You can visit it on ``127.0.0.1:9000``.
 
 ## Build
 
@@ -33,22 +29,22 @@ sudo docker-compose up -d
 
 ## Setup
 
-Visit ``localhost:9050/install.php`` and use the information you put inside your .env file inside the installation script.
+Visit ``127.0.0.1:9000/install.php``.
 
-Note: Chyrp URL must be ``127.0.0.1:9050`` instead of ``localhost:9050`` during setup. You can change it later to the website which will host your Chyrp Lite instance, once you are ready to put it online.
+Select "MySQL", the hostname is ``db`` and follow your .env for everything else.
 
-Note: the hostname is ``chyrp_db``.
+Note: Chyrp URL must be ``127.0.0.1:9000`` during setup. You can change it later to the website which will host your Chyrp Lite instance, once you are ready to put it online.
 
-Once setup is done, run ``sudo docker-compose exec chyrp_web rm /app/install.php``.
+Once setup is done, run ``sudo docker-compose exec web rm /app/install.php``.
 
 ## Updating
 
 For now, to update, you have to do this:
 ```bash
-sudo docker-compose exec chyrp_web git pull
+sudo docker-compose exec web git pull
 ```
 
-Then, go on ``localhost:9050/upgrade.php``.
+Then, go on ``127.0.0.1:9000/upgrade.php``.
 
 ## Contributing
 
