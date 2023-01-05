@@ -29,22 +29,21 @@ sudo docker-compose up -d
 
 ## Setup
 
-Visit ``127.0.0.1:9000/install.php``.
+Visit ``http://127.0.0.1:9000/install.php``.
 
 Select "MySQL", the hostname is ``db`` and follow your .env for everything else.
 
-Note: Chyrp URL must be ``127.0.0.1:9000`` during setup. You can change it later to the website which will host your Chyrp Lite instance, once you are ready to put it online.
+Note: Chyrp URL must be ``http://127.0.0.1:9000`` during setup. You can change it later to the website which will host your Chyrp Lite instance, once you are ready to put it online.
 
 Once setup is done, run ``sudo docker-compose exec web rm /var/www/html/install.php``.
 
 ## Updating
 
-For now, to update, you have to do this:
 ```bash
-sudo docker-compose exec web git pull
+sudo docker-compose exec web upgrade
 ```
 
-Then, go on ``127.0.0.1:9000/upgrade.php``.
+Then, go to ``http://127.0.0.1:9000/upgrade.php``.
 
 ## Contributing
 

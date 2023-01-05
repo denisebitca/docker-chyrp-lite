@@ -1,5 +1,9 @@
 #!/bin/bash
 
-git clone https://github.com/xenocrat/chyrp-lite .
-chown -R www-data:www-data /var/www/html
+if [ -z "$(ls -A /var/www/html)" ]; then
+	LATEST_RELEASE=$(curl -s https://api.github.com/repos/xenocrat/chyrp-lite/releases/latest | grep target_commitish | cut -d '"' -f 4);
+	git clone https://github.com/xenocrat/chyrp-lite .
+	git checkout $LATEST_RELEASE
+	chown -R www-data:www-data /var/www/html
+fi
 nginx -g 'daemon off;'

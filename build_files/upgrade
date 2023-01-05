@@ -1,0 +1,6 @@
+#!/bin/bash
+
+LATEST_RELEASE=$(curl -s https://api.github.com/repos/xenocrat/chyrp-lite/releases/latest | grep target_commitish | cut -d '"' -f 4);
+git pull
+git checkout $LATEST_RELEASE
+chown -R www-data:www-data /var/www/html
