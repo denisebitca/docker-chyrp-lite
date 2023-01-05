@@ -1,0 +1,26 @@
+services:
+  chyrp_web:
+    build: .
+    container_name: chyrp_lite_web
+    restart: unless-stopped
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    networks:
+      - default
+      - backend
+    ports:
+      - "9050:80"
+  chyrp_db:
+    image: mariadb:latest
+    restart: unless-stopped
+    networks:
+      - backend
+    env_file:
+      - ./.env
+    volumes:
+      - /srv/miaoute_data/chyrp_db:/var/lib/mysql
+networks:
+  backend:
+    internal: true
+  default:
